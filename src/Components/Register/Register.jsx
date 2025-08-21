@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 const Register = () => {
     const handleRegister = e =>{
         e.preventDefault();
+        const name = e.target.name.value;
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        console.log('register successfull', name, email, password)
 
     }
     return (
