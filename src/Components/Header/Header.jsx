@@ -7,23 +7,28 @@ const Header = () => {
     const { user, signOutUser } = useContext(AuthContext);
     console.log(user)
 
-    const handleSignOut =()=>{
+    const handleSignOut = () => {
         signOutUser()
-        .then(()=>{
-            console.log('user sign out successfully')
+            .then(() => {
+                console.log('user sign out successfully')
 
-        })
-        .catch(error=>{
-            console.log('error', error.message)
-        })
+            })
+            .catch(error => {
+                console.log('error', error.message)
+            })
 
-        }
-   
+    }
+
 
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="login">Login</NavLink></li>
         <li><NavLink to="register">Register</NavLink></li>
+        {
+            user && <>
+                <li><NavLink to="orders">Orders</NavLink></li>
+            </>
+        }
     </>
     return (
         <div className="navbar bg-base-100 shadow-sm">
@@ -47,8 +52,8 @@ const Header = () => {
             </div>
             <div className="navbar-end">
                 {
-                    user ? <><span>{user.email}</span><a onClick={handleSignOut} className="btn btn-info ml-1">Sign Out</a></>:
-                    <Link to="/login">LogIn</Link>
+                    user ? <><span>{user.email}</span><a onClick={handleSignOut} className="btn btn-info ml-1">Sign Out</a></> :
+                        <Link to="/login">LogIn</Link>
                 }
             </div>
         </div>
